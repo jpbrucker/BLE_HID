@@ -168,4 +168,4 @@ The [USBHID UsageTables] is annexe A of the previous document, and contains all 
 [USBHID]: http://www.usb.org/developers/hidpage/HID1_11.pdf "USB HID 1.11 specification"
 [USBHID UsageTables]: http://www.usb.org/developers/hidpage/Hut1_12v2.pdf "USB HID Usage Tables"
 
-Next: [HID-over-GATT](HIDService.html)
+Next: [HID-over-GATT](HIDService.md)

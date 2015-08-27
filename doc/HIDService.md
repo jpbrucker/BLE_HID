@@ -2,7 +2,7 @@
 
 ## BLE HID Service
 
-All of the structure formats described in [HID](HID.html) are used in HID-over-GATT.
+All of the structure formats described in [HID](HID.md) are used in HID-over-GATT.
 The nomenclature is not ideal, though: 
 
 - Report Descriptor, in USB HID, is called Report Map here.

@@ -20,9 +20,9 @@ This repository contains the HID Service implementation, example code, and vario
 
 ### Documentation
 
-- doc/HID
+- [doc/HID](doc/HID.md)
   Introduction to the USB HID specification, and to the parts that are re-used in BLE.
-- doc/HIDService
+- [doc/HIDService](doc/HIDService.md)
   Description of the BLE HID service, and how to use this implementation.
 
 
