@@ -33,7 +33,7 @@ InterruptIn button1(BUTTON1);
 InterruptIn button2(BUTTON2);
 
 void button1_down() {
-    mouseServicePtr->setSpeed(0, 0, 10);
+    mouseServicePtr->setSpeed(0, 0, 1);
 }
 
 void button1_up() {
@@ -41,7 +41,7 @@ void button1_up() {
 }
 
 void button2_down() {
-    mouseServicePtr->setSpeed(0, 0, -10);
+    mouseServicePtr->setSpeed(0, 0, -1);
 }
 
 void button2_up() {
