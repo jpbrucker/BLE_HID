@@ -2,32 +2,32 @@
 
 Human Interface Device ([HID][USBHID]) is a standard that defines the format
 used to communicate human inputs to a computer. It was originally created for
-USB keyboards and mice, as well as joysticks, digitizers, audio controllers,
-etc.
+USB keyboards, mice, joysticks, digitizers, audio controllers and so on.
 
-The [HID-over-GATT profile][HOGP] (HOGP) can be used to send HID informations
+You can use the [HID Over GATT Profile][HOGP] (HOGP) to send HID information
 over Bluetooth Low Energy, using the same data format as USB HID.
-Warning: this is not the same as the HID profile used on Bluetooth classic.
+
+Warning: this is not the same as the HID profile used on Classic Bluetooth.
 
 ## Content
 
 This repository contains the HID Service implementation, example code, and
-various documentations.
+various documentation.
 
 ### Code
 
 - `BLE_HID/HIDServiceBase.*`:
-  the HID Service implementation, requires *BLE\_API*
+  the HID Service implementation; requires *BLE\_API*.
 - `BLE_HID/KeyboardService.h`:
-  an example use of HIDServiceBase, that allows to send Keycode reports.
+  an example use of HIDServiceBase, which sends Keycode reports.
 - `examples/keyboard_stream.cpp`:
-  an example use of KeyboardService, that sends strings through series of HID
+  an example use of KeyboardService, which sends strings through a series of HID
   reports.
 
 ### Documentation
 
 - [doc/HID](doc/HID.md):
-  introduction to the USB HID specification, and to the parts that are re-used
+  introduction to the USB HID specification, and to the parts that are reused
   in BLE.
 - [doc/HIDService](doc/HIDService.md):
   description of the BLE HID service, and how to use this implementation.
@@ -36,4 +36,3 @@ various documentations.
 [USBHID]: http://www.usb.org/developers/hidpage/HID1_11.pdf "USB HID 1.11 specification"
 [HOGP]: https://developer.bluetooth.org/TechnologyOverview/Pages/HOGP.aspx "HID-over-GATT profile"
 [HIDS]: https://developer.bluetooth.org/TechnologyOverview/Pages/HIDS.aspx "BLE HID Sevice"
-
