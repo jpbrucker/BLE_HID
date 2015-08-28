@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   height="660.0918"
+   width="690.81543"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Linux-HOGP.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="852"
+     id="namedview100"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:zoom="0.22425739"
+     inkscape:cx="-337.22569"
+     inkscape:cy="150.25436"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4501"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       id="linearGradient5498"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#53be49;stop-opacity:1;"
+         offset="0"
+         id="stop5500" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5492"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5494" />
+    </linearGradient>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3848"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       xlink:href="#linearGradient5492"
+       id="linearGradient5496"
+       x1="43.07143"
+       y1="96.290749"
+       x2="189.78572"
+       y2="96.290749"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       xlink:href="#linearGradient5498"
+       id="linearGradient5502"
+       x1="43.07143"
+       y1="96.290749"
+       x2="189.78572"
+       y2="96.290749"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient5498-9"
+       osb:paint="solid"
+       gradientTransform="matrix(0.16238906,0,0,0.23354538,-192.0983,80.615416)">
+      <stop
+         style="stop-color:#53be49;stop-opacity:1;"
+         offset="0"
+         id="stop5500-2" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6790"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#53be49;stop-opacity:1;"
+         offset="0"
+         id="stop6792" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5498-9-0"
+       osb:paint="solid"
+       gradientTransform="matrix(0.1217918,0,0,0.17515903,474.20784,391.3468)">
+      <stop
+         style="stop-color:#53be49;stop-opacity:1;"
+         offset="0"
+         id="stop5500-2-7" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6881"
+       osb:paint="solid"
+       gradientTransform="matrix(0.16238906,0,0,0.23354538,-192.0983,80.615416)">
+      <stop
+         style="stop-color:#53be49;stop-opacity:1;"
+         offset="0"
+         id="stop6883" />
+    </linearGradient>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend0"
+       style="overflow:visible">
+      <path
+         id="path6932"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#e30505;fill-rule:evenodd;stroke:#e30505;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-9.1845307,-16.343681)">
+    <g
+       id="g6853">
+      <rect
+         y="209.76555"
+         x="404.05618"
+         height="69.10714"
+         width="109.28572"
+         id="rect2985"
+         style="opacity:0.42990657;fill:#95a19a;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-opacity:1" />
+      <text
+         id="text3755"
+         y="250.75272"
+         x="435.5047"
+         style="font-style:normal;font-weight:normal;font-size:18px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="250.75272"
+           x="435.5047"
+           id="tspan3757">UHID</tspan></text>
+    </g>
+    <rect
+       style="opacity:0.42990657;fill:#95a19a;fill-opacity:1;stroke:#000000;stroke-width:0.14287192;stroke-opacity:1"
+       id="rect2985-01"
+       width="17.211353"
+       height="15.923644"
+       x="28.240234"
+       y="46.161591" />
+    <g
+       transform="matrix(0.75,0,0,0.75,243.26529,172.10105)"
+       id="g3759-2">
+      <g
+         id="g3817">
+        <rect
+           style="opacity:0.42990657;fill:#95a19a;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+           id="rect2985-2"
+           width="145.71429"
+           height="92.142853"
+           x="43.57143"
+           y="50.219326" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           x="67.830917"
+           y="105.0388"
+           id="text3755-2"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan3757-8"
+             x="67.830917"
+             y="105.0388">BT-HIDP</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="matrix(0.75,0,0,0.75,-12.959309,172.10105)"
+       id="g3759-4">
+      <g
+         id="g6769">
+        <rect
+           style="opacity:0.42990657;fill:#95a19a;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+           id="rect2985-3"
+           width="145.71429"
+           height="92.142853"
+           x="47.907364"
+           y="50.061127" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           x="69.659042"
+           y="104.86888"
+           id="text3755-6"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan3757-2"
+             x="69.659042"
+             y="104.86888">USB-HID</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g3828"
+       transform="matrix(0.75,0,0,0.75,-8.031472,211.2003)">
+      <rect
+         y="177.36218"
+         x="260.71429"
+         height="107.85714"
+         width="224.28572"
+         id="rect3822"
+         style="opacity:0.42990657;fill:#35744d;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <text
+         id="text3824"
+         y="240.02708"
+         x="318.90402"
+         style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="240.02708"
+           x="318.90402"
+           id="tspan3826">HID Core</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 432.31612,278.87268 -99.26619,65.34926"
+       id="path3833"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Lend)"
+       d="m 125.3353,278.75403 90.41637,65.46791"
+       id="path3837"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 316.06717,278.87268 -27.46002,65.34926"
+       id="path3839"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="matrix(0.75,0,0,0.75,115.15301,172.10105)"
+       id="g3759-0">
+      <rect
+         y="50.219326"
+         x="43.57143"
+         height="92.142853"
+         width="145.71429"
+         id="rect2985-0"
+         style="opacity:0.42990657;fill:#95a19a;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <text
+         id="text3755-64"
+         y="105.02708"
+         x="70.250839"
+         style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="105.02708"
+           x="70.250839"
+           id="tspan3757-0">I2C-HID</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Lend)"
+       d="m 219.49576,278.87268 32.19146,65.34926"
+       id="path5016"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g5438"
+       transform="matrix(0.75,0,0,0.75,-13.119042,46.148678)">
+      <rect
+         y="50.219326"
+         x="43.57143"
+         height="92.142853"
+         width="145.71429"
+         id="rect2985-3-1"
+         style="opacity:0.42990657;fill:url(#linearGradient5502);fill-opacity:1;stroke:url(#linearGradient5496);stroke-opacity:1" />
+      <text
+         id="text3755-6-7"
+         y="105.02708"
+         x="91.596542"
+         style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="105.02708"
+           x="91.596542"
+           id="tspan3757-2-1">USB</tspan></text>
+    </g>
+    <g
+       style="fill:url(#linearGradient5498)"
+       id="g5443-3"
+       transform="matrix(0.75,0,0,0.75,243.71225,45.094368)">
+      <rect
+         y="51.229481"
+         x="-129.16466"
+         height="92.142853"
+         width="145.71429"
+         id="rect2985-3-1-4-3"
+         style="opacity:0.42990657;fill:url(#linearGradient5498);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+      <text
+         id="text3755-6-7-9-9"
+         y="106.03723"
+         x="-76.393448"
+         style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="106.03723"
+           x="-76.393448"
+           id="tspan3757-2-1-3-8">I2C</tspan></text>
+    </g>
+    <g
+       style="fill:url(#linearGradient5498-9)"
+       id="g5443-3-5"
+       transform="matrix(0.75,0,0,0.75,187.77233,-43.01816)">
+      <rect
+         y="92.579826"
+         x="-213.07324"
+         height="21.519537"
+         width="23.662407"
+         id="rect2985-3-1-4-3-0"
+         style="opacity:0.42990657;fill:url(#linearGradient5498-9);fill-opacity:1;stroke:#000000;stroke-width:0.19474398;stroke-opacity:1" />
+      <text
+         id="text6819"
+         y="110.66591"
+         x="-176.14975"
+         style="font-style:normal;font-weight:normal;font-size:21.33333206px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="110.66591"
+           x="-176.14975"
+           id="tspan6821">I/O Driver</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 75.139229,152.92031 1.538007,56.72659"
+       id="path5517"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 201.75335,152.62362 0.44936,57.14192"
+       id="path5701"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g5433"
+       transform="matrix(0.75,0,0,0.75,361.80546,48.882443)">
+      <g
+         id="g5443">
+        <g
+           id="g5504"
+           transform="translate(95.59535,-78.791899)">
+          <rect
+             y="51.229481"
+             x="-129.16466"
+             height="92.142853"
+             width="145.71429"
+             id="rect2985-3-1-4"
+             style="opacity:0.42990657;fill:url(#linearGradient5498);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+          <text
+             id="text3755-6-7-9"
+             y="106.04895"
+             x="-73.077042"
+             style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+             xml:space="preserve"
+             sodipodi:linespacing="125%"><tspan
+               y="106.04895"
+               x="-73.077042"
+               id="tspan3757-2-1-3">BT</tspan></text>
+        </g>
+      </g>
+    </g>
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 390.79059,96.856846 344.69378,209.76554"
+       id="path5897"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#e30505;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend0)"
+       d="m 399.12434,96.856846 c 23.95697,35.524264 297.32224,2.41139 267.90579,111.137804 L 561.59069,597.71037 m -5.46547,-0.58803 81.64766,-320.71089 C 688.59439,76.785248 473.59364,137.10667 455.94543,208.98377"
+       id="path6097"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:Serif;-inkscape-font-specification:Serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="322.33664"
+       y="134.91705"
+       id="text6463"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan6465"
+         x="322.33664"
+         y="134.91705">BT classic</tspan><tspan
+         x="322.33664"
+         y="149.91704"
+         id="tspan6467">with HID Profile</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:Serif;-inkscape-font-specification:Serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="595.7746"
+       y="97.900009"
+       id="text6463-5"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan6465-7"
+         x="595.7746"
+         y="97.900009">BT LE</tspan><tspan
+         x="595.7746"
+         y="112.90001"
+         id="tspan6467-8">with HID-over-GATT Profile</tspan></text>
+    <g
+       transform="matrix(0.75,0,0,0.75,445.25814,583.39416)"
+       id="g3759-0-7">
+      <g
+         id="g6545"
+         transform="translate(30.978011,-49.834192)">
+        <rect
+           style="opacity:0.42990657;fill:#0006f5;fill-opacity:1;stroke:#000000;stroke-width:1.08269835;stroke-opacity:1"
+           id="rect2985-0-9"
+           width="170.96494"
+           height="92.060158"
+           x="41.24995"
+           y="67.954422" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:24px;line-height:125%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           x="126.58594"
+           y="122.93176"
+           id="text3755-64-1"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan6543"
+             x="126.58594"
+             y="122.93176">BT deamon</tspan></text>
+        <path
+           id="path4456"
+           d="m -565.98886,37.791531 861.33331,0"
+           style="fill:none;fill-rule:evenodd;stroke:#5bd036;stroke-width:6.66666651;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:20, 6.66666667;stroke-dashoffset:0;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text4458"
+           y="20.458202"
+           x="-559.3222"
+           style="font-style:normal;font-weight:normal;font-size:46.66666794px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#45c436;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan4462"
+             y="20.458202"
+             x="-559.3222">Kernel</tspan></text>
+        <text
+           id="text4458-0"
+           y="84.522346"
+           x="-560.80853"
+           style="font-style:normal;font-weight:normal;font-size:46.66666794px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#45c436;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan4462-7"
+             y="84.522346"
+             x="-560.80853">User</tspan></text>
+        <path
+           id="path4486"
+           d="m -263.32221,-20.875134 0,110.666664"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.66666675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5.33333333, 2.66666667;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <rect
+       style="opacity:0.42990657;fill:#627435;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-opacity:1"
+       id="rect3822-6"
+       width="168.21429"
+       height="80.892853"
+       x="187.50424"
+       y="448.90039" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:18px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="223.82086"
+       y="496.05725"
+       id="text3824-6"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan3826-2"
+         x="223.82086"
+         y="496.05725">HID Driver</tspan></text>
+    <path
+       id="path6585"
+       d="m 271.61139,425.11479 0,23.78561"
+       style="fill:none;stroke:#000000;stroke-width:0.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="227.85715"
+       y="522.79077"
+       id="text6774"
+       sodipodi:linespacing="125%"><tspan
+         style="font-size:12px"
+         id="tspan6776"
+         x="227.85715"
+         y="522.79077">hidraw, hid-input, ...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15.99999905px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="55.945892"
+       y="59.113098"
+       id="text6819-6"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan6821-1"
+         x="55.945892"
+         y="59.113098">Transport Driver</tspan></text>
+  </g>
+</svg>
