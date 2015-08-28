@@ -1,0 +1,23 @@
+Somewhat sorted by priority:
+
+* MacOSX testing (10.9)
+
+* Windows testing
+
+* IOS testing
+
+* Size optimizations
+
+* Output reports (e.g. keyboard LEDs)
+
+* Low-energy: avoid sending spurious reports.
+
+* Factor out common headers with mbed's USBHID. That means HID types and
+  keyboard types.
+
+* Multiple input/output reports
+  For instance, when a device can act as mouse/keyboard combo, there will be
+  two input reports characteristics with different IDs
+
+* Boot protocol
+  If BIOS and firmwares start supporting BLE and GATT one day...
