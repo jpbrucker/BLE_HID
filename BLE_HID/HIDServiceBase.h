@@ -82,6 +82,17 @@ public:
      */
     virtual ble_error_t read(report_t report);
 
+    /**
+     * Set connection state.
+     *
+     * BLE API doesn't allow to chain onConnection callbacks at the moment, so it is the
+     * application's responsibility to use this method to update connection state.
+     */
+    virtual void setConnected(bool connected)
+    {
+        this->connected = connected;
+    }
+
 protected:
     /**
      * Called by BLE API when data has been successfully sent.
@@ -126,6 +137,7 @@ protected:
 
 protected:
     BLE &ble;
+    bool connected;
 
     int reportMapLength;
 

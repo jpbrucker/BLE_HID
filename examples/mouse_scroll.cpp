@@ -84,7 +84,7 @@ void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
     ble.gap().startAdvertising(); // restart advertising
 
     if (mouseServicePtr)
-        mouseServicePtr->connected = false;
+        mouseServicePtr->setConnected(false);
 }
 
 void onConnect(const Gap::ConnectionCallbackParams_t *params) {
@@ -93,7 +93,7 @@ void onConnect(const Gap::ConnectionCallbackParams_t *params) {
     printf("connected\r\n");
 
     if (mouseServicePtr) {
-        mouseServicePtr->connected = true;
+        mouseServicePtr->setConnected(true);
     }
 }
 

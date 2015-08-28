@@ -61,7 +61,6 @@ public:
                        featureReportLength  = 0,
                        reportTickerDelay    = 20),
         buttonsState (0),
-        connected (false),
         failedReports (0)
     {
         speed[0] = 0;
@@ -108,6 +107,5 @@ protected:
     uint8_t speed[3];
 
 public:
-    bool connected;
     uint32_t failedReports;
 };

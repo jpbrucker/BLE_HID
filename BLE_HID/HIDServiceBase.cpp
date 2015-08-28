@@ -12,6 +12,7 @@ HIDServiceBase::HIDServiceBase(BLE          &_ble,
                                uint8_t      featureReportLength,
                                uint8_t      inputReportTickerDelay) :
     ble(_ble),
+    connected (false),
     reportMapLength(reportMapSize),
 
     inputReport(inputReport),
