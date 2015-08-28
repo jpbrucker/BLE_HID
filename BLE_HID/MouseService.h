@@ -4,15 +4,15 @@
 
 enum ButtonState
 {
-    UP,
-    DOWN
+    BUTTON_UP,
+    BUTTON_DOWN
 };
 
 enum MouseButton
 {
-    LEFT    = 0x1,
-    RIGHT   = 0x2,
-    MIDDLE  = 0x4,
+    MOUSE_BUTTON_LEFT    = 0x1,
+    MOUSE_BUTTON_RIGHT   = 0x2,
+    MOUSE_BUTTON_MIDDLE  = 0x4,
 };
 
 report_map_t MOUSE_REPORT_MAP = {
@@ -81,7 +81,7 @@ public:
 
     int setButton(MouseButton button, ButtonState state)
     {
-        if (state == UP)
+        if (state == BUTTON_UP)
             buttonsState &= ~(button);
         else
             buttonsState |= button;
