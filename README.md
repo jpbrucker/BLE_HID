@@ -20,9 +20,17 @@ various documentation.
   the HID Service implementation; requires *BLE\_API*.
 - `BLE_HID/KeyboardService.h`:
   an example use of HIDServiceBase, which sends Keycode reports.
+- `BLE_HID/MouseService.h`:
+  a service that sends mouse events: linear speed along X/Y axis, scroll speed
+  and clicks.
+- `BLE_HID/JoystickService.h`:
+  a service that sends joystick events: moves along X/Y/Z axis, rotation around
+  X, and buttons.
 - `examples/keyboard_stream.cpp`:
   an example use of KeyboardService, which sends strings through a series of HID
   reports.
+- `examples/mouse_scroll.cpp`:
+  an example use of MouseService, which sends scroll reports.
 
 ### Documentation
 
