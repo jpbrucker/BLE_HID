@@ -44,27 +44,100 @@ They can also be read by the host.
 
 ## Implementation with BLE_API
 
-A custom HID Device will need to inherit from HIDServiceBase and provide it
-with a report map and the report structures.
-KeyboardService is one possible implementation. As you can see in this file, it
-defines a constant byte array containing the whole report map, and passes it to
-HIDServiceBase during construction.
+A custom HID device will need to inherit from HIDServiceBase and provide it
+with the necessary informations:
+
+* A report map (USB's report descriptor). In the following example, we will use
+  the keyboard map described in appendix B.1 of the USB HID specification.
+* The report arrays and their sizes.
+* The report rate, when reports need to be sent asynchronously. To start with a
+  simple example, we'll only use synchronous reports.
+
+We want to send the string "Hello" to an OS. We can first write a method `putc`
+that takes a char as argument and returns a status code. This function must
+send two reports: one that means "key down" and one that means "key up".
+
+Given a `keymap` array that associates characters to their keycode, we can
+write `putc` as follows:
+
+
+    int KeyboardService::putc(char c)
+    {
+        static uint8_t report[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+        int err = 0;
+    
+        report[0] = keymap[c].modifier;
+        report[2] = keymap[c].usage;
+    
+        err = send(report);
+        if (err)
+            return err;
+    
+        report[0] = 0;
+        report[2] = 0;
+    
+        return send(report);
+    }
+
+And a string could be sent with this:
+
+    void KeyboardService::puts(const char *s)
+    {
+        for (; *s; s++)
+            putc(*s);
+    }
+
+
+There are two major issues with this code:
+
+1. If the "key up" report fails, the key will seem to be stuck until the next
+   report, from the OS' point of view.
+
+2. Since we're using a very limited amount of resources, reports will soon fail
+   if we attempt to send them sequentially.
+
+To illustrate those issues, let's take as example a nRF51 chip with a S110
+SoftDevice. The firmware is using seven buffers to store outgoing
+notifications. For a call to `keyboardService.puts("Hello")`, `putc` will be
+called for each character until the end of string, before returning and
+allowing the main loop to inspect BLE events.
+Calls to `send()` will start to fail during the fourth report, since the seven
+notification buffers will be in use. Instead of seeing "Hello" on the OS,
+we'll see "Helllllllll...", which won't look good in a demo.
+
+### KeyboardService
+
+KeyboardService uses a buffer to dissociate calls to `putc` from the `send`
+thread.
+This thread is provided by `HIDServiceBase` in the form of a ticker. When
+enabled, it calls the `sendCallback` method at a rate specified with the
+`reportTickerDelay` parameter.
 
 We send key reports with KeyboardService through its putc or printf
 methods. For example, with `kbdService.printf("Hello world!")`, the string
-"Hello world!" will go in a circular buffer, and a ticker will consume from
+"Hello world!" will go in a circular buffer, and the ticker will consume from
 this buffer every 20ms.
-First, the letter 'H' will be sent by writing the following values in the
+First, the letter 'H' will be sent by writing the following values into the
 inputReport characteristic:
 
     [0x2, 0, 0x0b, 0, 0, 0, 0, 0]
     [0, 0, 0, 0, 0, 0, 0, 0]
 
-On the next tick, we'll send two reports for the letter 'e', and so on. 
+If the first report fails, the callback puts it back in the circular buffer and
+will try again on next call. Same goes for the empty report.
 
-Note that since we're
-using GATT notifications, there is no way to know if the OS got the message and
-understood it correctly.
+On the next tick, we'll send two reports for the letter 'e', and so on.
+
+### MouseService
+
+A mouse will need to send reports at regular interval, because the OS will only
+move the cursor upon receiving an input report. As explained in [HID](HID.md),
+our report will contain three bytes; one bitmap contains the button status, the
+next two are signed and represent the immediate speed.
+
+
+Note that since we're using GATT notifications, there is no way to know if the
+OS got the message and understood it correctly.
 
 ## Support in common operating systems
 
