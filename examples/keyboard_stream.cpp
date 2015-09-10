@@ -1,10 +1,9 @@
 #include "mbed.h"
 
 #include "ble/BLE.h"
-#include "ble/services/BatteryService.h"
-
-#include "HIDDeviceInformationService.h"
 #include "KeyboardService.h"
+
+#include "examples_common.h"
 
 /**
  * This program implements a complete HID-over-Gatt Profile:
@@ -18,8 +17,6 @@
  * once this buffer is full. This will result in partial strings being sent to the client.
  */
 
-volatile bool connected = false;
-
 DigitalOut waiting_led(LED1);
 DigitalOut connected_led(LED2);
 
@@ -31,39 +28,44 @@ KeyboardService *kbdServicePtr;
 
 static const char DEVICE_NAME[] = "µKbd";
 static const char SHORT_DEVICE_NAME[] = "kbd1";
-static const uint16_t uuid16_list[] =  {GattService::UUID_HUMAN_INTERFACE_DEVICE_SERVICE,
-                                        GattService::UUID_DEVICE_INFORMATION_SERVICE,
-                                        GattService::UUID_BATTERY_SERVICE};
 
-void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
+static void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
 {
+    HID_DEBUG("disconnected\r\n");
     connected_led = 0;
-    connected = false;
-    printf("disconnected\r\n");
+
+    if (kbdServicePtr)
+        kbdServicePtr->setConnected(false);
 
     ble.gap().startAdvertising(); // restart advertising
 }
 
-void onConnect(const Gap::ConnectionCallbackParams_t *params) {
-    waiting_led = 0;
-    connected = true;
-    printf("connected\r\n");
+static void onConnect(const Gap::ConnectionCallbackParams_t *params)
+{
+    HID_DEBUG("connected\r\n");
+    waiting_led = false;
+
+    if (kbdServicePtr)
+        kbdServicePtr->setConnected(true);
 }
 
-void waiting() {
-    if (!connected)
+static void waiting() {
+    if (!kbdServicePtr->isConnected())
         waiting_led = !waiting_led;
     else
         connected_led = !connected_led;
 }
 
 void send_string(const char * c) {
-    if (!connected) {
-        printf("we haven't connected yet...");
+    if (!kbdServicePtr)
+        return;
+
+    if (!kbdServicePtr->isConnected()) {
+        HID_DEBUG("we haven't connected yet...");
     } else {
         int len = strlen(c);
         kbdServicePtr->printf(c);
-        printf("sending %d chars\r\n", len);
+        HID_DEBUG("sending %d chars\r\n", len);
     }
 }
 
@@ -75,86 +77,40 @@ void send_more_stuff() {
     send_string("All work and no play makes Jack a dull boy\n");
 }
 
-void passkeyDisplayCallback(Gap::Handle_t handle, const SecurityManager::Passkey_t passkey)
-{
-    printf("Input passKey: ");
-    for (unsigned i = 0; i < Gap::ADDR_LEN; i++) {
-        printf("%c", passkey[i]);
-    }
-    printf("\r\n");
-}
-
-void securitySetupCompletedCallback(Gap::Handle_t handle, SecurityManager::SecurityCompletionStatus_t status)
-{
-    if (status == SecurityManager::SEC_STATUS_SUCCESS) {
-        printf("Security success %d\r\n", status);
-    } else {
-        printf("Security failed %d\r\n", status);
-    }
-}
-
-void securitySetupInitiatedCallback(Gap::Handle_t, bool allowBonding, bool requireMITM, SecurityManager::SecurityIOCapabilities_t iocaps)
-{
-    printf("Security setup initiated\r\n");
-}
-
 int main()
 {
+    Ticker heartbeat;
+
     button1.rise(send_stuff);
     button2.rise(send_more_stuff);
 
-    printf("initialising ticker\r\n");
+    HID_DEBUG("initialising ticker\r\n");
 
-    Ticker heartbeat;
     heartbeat.attach(waiting, 1);
 
-    printf("initialising ble\r\n");
-
+    HID_DEBUG("initialising ble\r\n");
     ble.init();
-    ble.securityManager().onSecuritySetupInitiated(securitySetupInitiatedCallback);
-    ble.securityManager().onPasskeyDisplay(passkeyDisplayCallback);
-    ble.securityManager().onSecuritySetupCompleted(securitySetupCompletedCallback);
 
     ble.gap().onDisconnection(onDisconnect);
     ble.gap().onConnection(onConnect);
 
-    bool enableBonding = true;
-    bool requireMITM = true;
-    ble.securityManager().init(enableBonding, requireMITM, SecurityManager::IO_CAPS_DISPLAY_ONLY);
+    initializeSecurity(ble);
 
-    printf("adding device info and battery service\r\n");
-
-    PnPID_t pnpID;
-    pnpID.vendorID_source = 0x2; // from the USB Implementer's Forum
-    pnpID.vendorID = 0x0D28; // NXP
-    pnpID.productID = 0x0204; // CMSIS-DAP (well, it's a keyboard but oh well)
-    pnpID.productVersion = 0x0100; // v1.0
-    HIDDeviceInformationService deviceInfo(ble, "ARM", "m1", "abc", "def", "ghi", "jkl", &pnpID);
-
-    BatteryService batteryInfo(ble, 80);
-
-    printf("adding hid service\r\n");
-
+    HID_DEBUG("adding hid service\r\n");
     KeyboardService kbdService(ble);
     kbdServicePtr = &kbdService;
 
-    printf("setting up gap\r\n");
-    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED |
-                                           GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
-    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LIST_16BIT_SERVICE_IDS,
-                                           (uint8_t *)uuid16_list, sizeof(uuid16_list));
+    HID_DEBUG("adding device info and battery service\r\n");
+    initializeHOGP(ble);
+
+    HID_DEBUG("setting up gap\r\n");
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::KEYBOARD);
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME,
                                            (uint8_t *)DEVICE_NAME, sizeof(DEVICE_NAME));
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::SHORTENED_LOCAL_NAME,
                                            (uint8_t *)SHORT_DEVICE_NAME, sizeof(SHORT_DEVICE_NAME));
 
-    // see 5.1.2: HID over GATT Specification (pg. 25)
-    ble.gap().setAdvertisingType(GapAdvertisingParams::ADV_CONNECTABLE_UNDIRECTED);
-    // 30ms to 50ms is recommended (5.1.2)
-    ble.gap().setAdvertisingInterval(50);
-
-    printf("advertising\r\n");
+    HID_DEBUG("advertising\r\n");
     ble.gap().startAdvertising();
 
     while (true) {
