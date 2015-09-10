@@ -1,3 +1,8 @@
+#ifndef HID_SERVICE_BASE_H_
+#define HID_SERVICE_BASE_H_
+
+#include "mbed.h"
+
 #include "ble/BLE.h"
 #include "HID_types.h"
 
@@ -178,3 +183,4 @@ protected:
     bool reportTickerIsActive;
 };
 
+#endif /* !HID_SERVICE_BASE_H_ */
