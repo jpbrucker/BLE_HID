@@ -21,12 +21,6 @@
 
 #include "HID_types.h"
 
-void pnpIDread(GattReadAuthCallbackParams *params)
-{
-    //params->authorizationReply = AUTH_CALLBACK_REPLY_ATTERR_INSUF_AUTHENTICATION;
-    printf("PNP ID read\r\n");
-}
-
 /**
 * @class HIDDeviceInformationService
 * @brief BLE Device Information Service <br>
@@ -130,7 +124,6 @@ public:
          * 10.10 gets confused when only characteristics from HID Service require security...
          */
         pnpIDCharacteristic.requireSecurity(SecurityManager::SECURITY_MODE_ENCRYPTION_NO_MITM);
-        pnpIDCharacteristic.setReadAuthorizationCallback(pnpIDread);
         ble.addService(deviceInformationService);
         serviceAdded = true;
     }
