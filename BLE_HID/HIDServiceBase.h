@@ -92,10 +92,18 @@ public:
      *
      * BLE API doesn't allow to chain onConnection callbacks at the moment, so it is the
      * application's responsibility to use this method to update connection state.
+
+     * TODO: This is temporary. Remove external calls to setConnected once connection callback
+     * chaining is integrated into BLE API.
      */
     virtual void setConnected(bool connected)
     {
         this->connected = connected;
+    }
+
+    virtual bool isConnected(void)
+    {
+        return connected;
     }
 
 protected:
