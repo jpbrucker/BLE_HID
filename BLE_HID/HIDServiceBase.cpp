@@ -108,6 +108,9 @@ HIDServiceBase::HIDServiceBase(BLE          &_ble,
 
     ble.addService(service);
 
+    ble.gap().onConnection(this, &HIDServiceBase::onConnection);
+    ble.gap().onDisconnection(this, &HIDServiceBase::onDisconnection);
+
     ble.onDataSent(this, &HIDServiceBase::onDataSent);
 
     /*
@@ -197,3 +200,12 @@ ble_error_t HIDServiceBase::read(report_t report) {
     return BLE_ERROR_NOT_IMPLEMENTED;
 }
 
+void HIDServiceBase::onConnection(const Gap::ConnectionCallbackParams_t *params)
+{
+    this->connected = true;
+}
+
+void HIDServiceBase::onDisconnection(const Gap::DisconnectionCallbackParams_t *params)
+{
+    this->connected = false;
+}

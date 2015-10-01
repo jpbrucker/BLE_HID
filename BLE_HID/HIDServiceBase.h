@@ -87,19 +87,8 @@ public:
      */
     virtual ble_error_t read(report_t report);
 
-    /**
-     * Set connection state.
-     *
-     * BLE API doesn't allow to chain onConnection callbacks at the moment, so it is the
-     * application's responsibility to use this method to update connection state.
-
-     * TODO: This is temporary. Remove external calls to setConnected once connection callback
-     * chaining is integrated into BLE API.
-     */
-    virtual void setConnected(bool connected)
-    {
-        this->connected = connected;
-    }
+    virtual void onConnection(const Gap::ConnectionCallbackParams_t *params);
+    virtual void onDisconnection(const Gap::DisconnectionCallbackParams_t *params);
 
     virtual bool isConnected(void)
     {

@@ -39,13 +39,10 @@ void button2_up() {
 }
 
 
-static void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
+static void onDisconnect(const Gap::DisconnectionCallbackParams_t *params)
 {
     HID_DEBUG("disconnected\r\n");
     connected_led = 0;
-
-    if (mouseServicePtr)
-        mouseServicePtr->setConnected(false);
 
     ble.gap().startAdvertising(); // restart advertising
 }
@@ -54,9 +51,6 @@ static void onConnect(const Gap::ConnectionCallbackParams_t *params)
 {
     HID_DEBUG("connected\r\n");
     waiting_led = 0;
-
-    if (mouseServicePtr)
-        mouseServicePtr->setConnected(true);
 }
 
 static void waiting() {

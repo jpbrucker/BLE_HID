@@ -29,13 +29,10 @@ KeyboardService *kbdServicePtr;
 static const char DEVICE_NAME[] = "µKbd";
 static const char SHORT_DEVICE_NAME[] = "kbd1";
 
-static void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
+static void onDisconnect(const Gap::DisconnectionCallbackParams_t *params)
 {
     HID_DEBUG("disconnected\r\n");
     connected_led = 0;
-
-    if (kbdServicePtr)
-        kbdServicePtr->setConnected(false);
 
     ble.gap().startAdvertising(); // restart advertising
 }
@@ -44,9 +41,6 @@ static void onConnect(const Gap::ConnectionCallbackParams_t *params)
 {
     HID_DEBUG("connected\r\n");
     waiting_led = false;
-
-    if (kbdServicePtr)
-        kbdServicePtr->setConnected(true);
 }
 
 static void waiting() {

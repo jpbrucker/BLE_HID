@@ -222,13 +222,10 @@ void poll_accel(void)
     vy *= 0.999;
 }
 
-void onDisconnect(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
+void onDisconnect(const Gap::DisconnectionCallbackParams_t *params)
 {
     HID_DEBUG("disconnected\r\n");
     connected_led = 0;
-
-    if (hidServicePtr)
-        hidServicePtr->setConnected(false);
 
     ble.gap().startAdvertising(); // restart advertising
 }
@@ -237,9 +234,6 @@ void onConnect(const Gap::ConnectionCallbackParams_t *params)
 {
     HID_DEBUG("connected\r\n");
     waiting_led = 0;
-
-    if (hidServicePtr)
-        hidServicePtr->setConnected(true);
 }
 
 void waiting() {
