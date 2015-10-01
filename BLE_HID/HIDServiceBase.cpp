@@ -106,12 +106,12 @@ HIDServiceBase::HIDServiceBase(BLE          &_ble,
     GattService service(GattService::UUID_HUMAN_INTERFACE_DEVICE_SERVICE,
                         characteristics, charIndex);
 
-    ble.addService(service);
+    ble.gattServer().addService(service);
 
     ble.gap().onConnection(this, &HIDServiceBase::onConnection);
     ble.gap().onDisconnection(this, &HIDServiceBase::onDisconnection);
 
-    ble.onDataSent(this, &HIDServiceBase::onDataSent);
+    ble.gattServer().onDataSent(this, &HIDServiceBase::onDataSent);
 
     /*
      * Change preferred connection params, in order to optimize the notification frequency. Most
