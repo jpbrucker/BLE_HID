@@ -152,6 +152,21 @@ public:
     {
     }
 
+    virtual void onConnection(const Gap::ConnectionCallbackParams_t *params)
+    {
+        HIDServiceBase::onConnection(params);
+
+        /* Drain buffer, in case we've been disconnected while transmitting */
+        if (!reportTickerIsActive && keyBuffer.isSomethingPending())
+            startReportTicker();
+    }
+
+    virtual void onDisconnection(const Gap::DisconnectionCallbackParams_t *params)
+    {
+        stopReportTicker();
+        HIDServiceBase::onDisconnection(params);
+    }
+
     virtual ble_error_t send(const report_t report)
     {
         static unsigned int consecutiveFailures = 0;
