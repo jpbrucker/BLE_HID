@@ -70,11 +70,25 @@ public:
         startReportTicker();
     }
 
+    void onConnection(const Gap::ConnectionCallbackParams_t *params)
+    {
+        HIDServiceBase::onConnection(params);
+        startReportTicker();
+    }
+
+    void onDisconnection(const Gap::DisconnectionCallbackParams_t *params)
+    {
+        stopReportTicker();
+        HIDServiceBase::onDisconnection(params);
+    }
+
     int setSpeed(int8_t x, int8_t y, int8_t wheel)
     {
         speed[0] = x;
         speed[1] = y;
         speed[2] = wheel;
+
+        startReportTicker();
 
         return 0;
     }
@@ -86,14 +100,34 @@ public:
         else
             buttonsState |= button;
 
+        startReportTicker();
+
         return 0;
     }
 
     virtual void sendCallback(void) {
+        uint8_t buttons = buttonsState & 0x7;
+
         if (!connected)
             return;
 
-        report[0] = buttonsState & 0x7;
+        bool can_sleep = (report[0] == 0
+                       && report[1] == 0
+                       && report[2] == 0
+                       && report[3] == 0
+                       && report[0] == buttons
+                       && report[1] == speed[0]
+                       && report[2] == speed[1]
+                       && report[3] == speed[2]);
+
+        if (can_sleep) {
+            /* TODO: find out why there always is two more calls to sendCallback after this
+             * stopReportTicker(). */
+            stopReportTicker();
+            return;
+        }
+
+        report[0] = buttons;
         report[1] = speed[0];
         report[2] = speed[1];
         report[3] = speed[2];
