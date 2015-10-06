@@ -11,6 +11,11 @@
 #define KEYBUFFER_SIZE 512
 #endif
 
+/**
+ * Report descriptor for a standard 101 keys keyboard, following the HID specification example:
+ * - 8 bytes input report (1 byte for modifiers and 6 for keys)
+ * - 1 byte output report (LEDs)
+ */
 report_map_t KEYBOARD_REPORT_MAP = {
     USAGE_PAGE(1),      0x01,       // Generic Desktop Ctrls
     USAGE(1),           0x06,       // Keyboard
@@ -46,9 +51,13 @@ report_map_t KEYBOARD_REPORT_MAP = {
     END_COLLECTION(0),
 };
 
+/// "keys pressed" report
 static uint8_t inputReportData[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+/// "keys released" report
 static const uint8_t emptyInputReportData[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+/// LEDs report
 static uint8_t outputReportData[] = { 0 };
+
 
 /**
  * @class KeyBuffer
@@ -135,6 +144,26 @@ protected:
     bool keyUpIsPending;
 };
 
+
+/**
+ * @class KeyboardService
+ * @brief HID-over-Gatt keyboard service
+ *
+ * Send keyboard reports over BLE. Users should rely on the high-level functions provided by the
+ * Stream API. Because we can't send batches of HID reports, we store pending keys in a circular
+ * buffer and rely on the report ticker to spread them over time.
+ *
+ * @code
+ * BLE ble;
+ * KeyboardService kbd(ble);
+ *
+ * void once_connected_and_paired_callback(void)
+ * {
+ *     // Sequentially send keys 'Shift'+'h', 'e', 'l', 'l', 'o', '!' and <enter>
+ *     kbd.printf("Hello!\n");
+ * }
+ * @endcode
+ */
 class KeyboardService : public HIDServiceBase, public Stream
 {
 public:
@@ -167,6 +196,9 @@ public:
         HIDServiceBase::onDisconnection(params);
     }
 
+    /**
+     * Send raw report. Should only be called by sendCallback.
+     */
     virtual ble_error_t send(const report_t report)
     {
         static unsigned int consecutiveFailures = 0;
@@ -187,7 +219,7 @@ public:
 
         if (consecutiveFailures > 20) {
             /*
-             * We're not tranmitting anything anymore. Might as well avoid overloading the
+             * We're not transmitting anything anymore. Might as well avoid overloading the
              * system in case it can magically fix itself. Ticker will start again on next _putc
              * call. It could also be started on next connection, but we can't register a callback
              * for that, currently.
@@ -207,6 +239,14 @@ public:
         return send(emptyInputReportData);
     }
 
+    /**
+     * Send a character, defined by a modifier (CTRL, SHIFT, ALT) and the key
+     *
+     * @param key Character to send (as defined in USB HID Usage Tables)
+     * @param modifier Optional modifiers (logical OR of enum MODIFIER_KEY)
+     *
+     * @returns BLE_ERROR_NONE on success, or an error code otherwise.
+     */
     ble_error_t keyDownCode(uint8_t key, uint8_t modifier)
     {
         inputReportData[0] = modifier;
@@ -215,6 +255,13 @@ public:
         return send(inputReportData);
     }
 
+    /**
+     * Push a key on the internal FIFO
+     *
+     * @param c ASCII character to send
+     *
+     * @returns 0 on success, or ENOMEM when the FIFO is full.
+     */
     virtual int _putc(int c) {
         if (keyBuffer.full()) {
             return ENOMEM;
@@ -233,6 +280,9 @@ public:
         return 0;
     }
 
+    /**
+     * Pop a key from the internal FIFO, and attempt to send it over BLE
+     */
     virtual void sendCallback(void) {
         ble_error_t ret;
         uint8_t c;
@@ -271,6 +321,13 @@ public:
         }
     }
 
+    /**
+     * Restart report ticker if it was disabled, after too many consecutive failures.
+     *
+     * This is called by the BLE stack.
+     *
+     * @param count	Number of reports (notifications) sent
+     */
     virtual void onDataSent(unsigned count)
     {
         if (!reportTickerIsActive && keyBuffer.isSomethingPending())
