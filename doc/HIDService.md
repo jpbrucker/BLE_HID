@@ -142,7 +142,8 @@ OS got the message and understood it correctly.
 ## Support in common operating systems
 
 Bluetooth Low Energy support is still at an early stage, and the HID service is
-even less supported.
+even less supported. At this stage, we can only say that examples work
+relatively well on Linux and Android.
 
 ### Windows
 
@@ -150,12 +151,17 @@ Untested.
 
 ### Mac OS
 
-The keyboard and mouse examples work on MacOSX 10.10. The OS takes complete control
-over HID Services, so you can connect to a device using the bluetooth system
-panel.
+* The keyboard and mouse examples work on MacOSX 10.10. The OS takes complete
+  control over HID Services, so you can connect to a device using the bluetooth
+  system panel.
 
-All tests failed on MacOSX 10.9; it seems to simply ignore all
-input reports.
+* All tests failed on MacOSX 10.9; it seems to simply ignore all input reports.
+    * Mouse report map has been tested with USB HID and worked well. So we can
+      assume that's not the issue.
+    * Examples often manage to connect, but sending HID reports doesn't have any
+      apparent effect.
+      One way of "solving" this on MacOSX 10.10 was to for security on Device
+      Information Service. Security requirements need to be investigated.
 
 ### iOS
 
@@ -164,16 +170,17 @@ Untested.
 ### Android
 
 Android may be running either Bluez (see Linux), or the custom BlueDroid
-implementation.
-Either way, all initial tests succeeded: HID keyboard and mouse over BLE
-worked great.
+implementation. Either way, all initial tests succeeded: HID keyboard and
+mouse over BLE worked great.
+You should be able to just connect to HID devices from the bluetooth
+configuration panel.
 
 ### Linux
 
 [Bluez][bluez] is the way to go on Linux. Bluetooth support up until version
 4.2 is in the Kernel, and userspace implementation depends on the distribution.
 
-On Archlinux, for instance, systemd launches the Bluetooth deamon, which
+On Archlinux, for instance, systemd launches the Bluetooth daemon, which
 communicates with the kernel driver. Any client can then send commands using
 dbus. One such client is bluetoothctl, another is blueman.
 
@@ -184,7 +191,7 @@ The HID part is a bit more intricate:
 
 * Bluetooth packets go through Bluez and Bluetooth daemon. The driver itself
   doesn't handle GATT.
-* The deamon recognizes GATT packets associated with the HID Service.
+* The daemon recognizes GATT packets associated with the HID Service.
 * HID reports are sent to UHID (Userspace HID), and re-routed through the
   generic HID component in the kernel.
 * Everything goes through the input drivers and out to the userspace again.
@@ -193,6 +200,11 @@ The HID part is a bit more intricate:
 
 (Most of this diagram is courtesy of the kernel's
  Documentation/hid/hid-transport.txt)
+
+I'm still having issues when a device is disconnected: the daemon seems unable
+to register the kernel hidraw device again on its own. My current solution is
+to remove the pairing infos manually with bluetoothctl's `remove` command and
+let the agent do the rest.
 
 [bluez]: http://www.bluez.org/download/ "Bluez"
 [archbt]: https://wiki.archlinux.org/index.php/Bluetooth "Archlinux wiki: bluetooth"
