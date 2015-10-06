@@ -196,7 +196,7 @@ The HID part is a bit more intricate:
   generic HID component in the kernel.
 * Everything goes through the input drivers and out to the userspace again.
 
-![HID Subsystem with BLE in Linux](Linux-HOGP.svg)
+![HID Subsystem with BLE in Linux](img/Linux-HOGP.svg)
 
 (Most of this diagram is courtesy of the kernel's
  Documentation/hid/hid-transport.txt)
