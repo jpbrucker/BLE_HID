@@ -15,6 +15,10 @@ enum MouseButton
     MOUSE_BUTTON_MIDDLE  = 0x4,
 };
 
+/**
+ * Report descriptor for a standard 3 buttons + wheel mouse with relative X/Y
+ * moves
+ */
 report_map_t MOUSE_REPORT_MAP = {
     USAGE_PAGE(1),      0x01,         // Generic Desktop
     USAGE(1),           0x02,         // Mouse
@@ -47,6 +51,36 @@ report_map_t MOUSE_REPORT_MAP = {
 
 uint8_t report[] = { 0, 0, 0, 0 };
 
+/**
+ * @class MouseService
+ * @brief HID-over-Gatt mouse service.
+ *
+ * Send mouse moves and button informations over BLE.
+ *
+ * @code
+ * BLE ble;
+ * MouseService mouse(ble);
+ *
+ * Timeout timeout;
+ *
+ * void stop_mouse_move(void)
+ * {
+ *      // Set mouse state to immobile
+ *      mouse.setButton(MOUSE_BUTTON_LEFT, MOUSE_UP);
+ *      mouse.setSpeed(0, 0, 0);
+ * }
+ *
+ * void start_mouse_move(void)
+ * {
+ *      // Move left with a left button down. If the focus is on a drawing
+ *      // software, for instance, this should draw a line.
+ *      mouse.setButton(MOUSE_BUTTON_LEFT, MOUSE_DOWN);
+ *      mouse.setSpeed(1, 0, 0);
+ *
+ *      timeout.attach(stop_mouse_move, 0.2);
+ * }
+ * @endcode
+ */
 class MouseService: public HIDServiceBase
 {
 public:
@@ -70,6 +104,22 @@ public:
         startReportTicker();
     }
 
+    /**
+     * Set X, Y, Z speed of the mouse. Parameters are sticky and will be
+     * transmitted on every tick. Users should therefore reset them to 0 when
+     * the device is immobile.
+     *
+     * @param x     Speed on hoizontal axis
+     * @param y     Speed on vertical axis
+     * @param wheel Scroll speed
+     *
+     * @returns A status code
+     *
+     * @note Directions depend on the operating system's configuration. It is
+     * customary to increase values on the X axis from left to right, and on the
+     * Y axis from top to bottom.
+     * Wheel is less standard, although positive values will usually scroll up.
+     */
     int setSpeed(int8_t x, int8_t y, int8_t wheel)
     {
         speed[0] = x;
@@ -79,6 +129,11 @@ public:
         return 0;
     }
 
+    /**
+     * Toggle the state of one button
+     *
+     * @returns A status code
+     */
     int setButton(MouseButton button, ButtonState state)
     {
         if (state == BUTTON_UP)
@@ -89,6 +144,9 @@ public:
         return 0;
     }
 
+    /**
+     * Called by the report ticker
+     */
     virtual void sendCallback(void) {
         if (!connected)
             return;
