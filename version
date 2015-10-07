@@ -1,0 +1,6 @@
+# Informal version number to keep track of API changes during development and
+# keep in sync with the various lib and example repos. Once the HID library is
+# stable, it will probably get merged with BLE_API, and this file can be
+# removed.
+
+0.1
