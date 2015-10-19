@@ -120,13 +120,13 @@ public:
         startReportTicker();
     }
 
-    void onConnection(const Gap::ConnectionCallbackParams_t *params)
+    virtual void onConnection(const Gap::ConnectionCallbackParams_t *params)
     {
         HIDServiceBase::onConnection(params);
         startReportTicker();
     }
 
-    void onDisconnection(const Gap::DisconnectionCallbackParams_t *params)
+    virtual void onDisconnection(const Gap::DisconnectionCallbackParams_t *params)
     {
         stopReportTicker();
         HIDServiceBase::onDisconnection(params);
