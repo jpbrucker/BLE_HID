@@ -150,8 +150,8 @@ void init_accel(void)
         HID_DEBUG("CTRL_REG1 2 failed\r\n");
 
     read_accel(MMA8653_WHOAMI, &whoami, 1);
-    MBED_ASSERT(whoami == 0x4a);
     HID_DEBUG("Accel is %x\r\n", whoami);
+    MBED_ASSERT(whoami == 0x5a);
 }
 
 /** Integer square root of an uint16 */
