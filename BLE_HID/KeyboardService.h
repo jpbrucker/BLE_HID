@@ -237,8 +237,7 @@ public:
             /*
              * We're not transmitting anything anymore. Might as well avoid overloading the
              * system in case it can magically fix itself. Ticker will start again on next _putc
-             * call. It could also be started on next connection, but we can't register a callback
-             * for that, currently.
+             * call, or on next connection.
              */
             stopReportTicker();
             consecutiveFailures = 0;
