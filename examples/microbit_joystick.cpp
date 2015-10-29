@@ -60,7 +60,7 @@ JoystickService *hidServicePtr;
 MouseService *hidServicePtr;
 #endif
 
-static const char DEVICE_NAME[] = "µJoy";
+static const char DEVICE_NAME[] = "uJoy";
 static const char SHORT_DEVICE_NAME[] = "joystick0";
 
 DigitalOut waiting_led(LED1);

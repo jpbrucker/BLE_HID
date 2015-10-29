@@ -42,7 +42,7 @@ InterruptIn button2(BUTTON2);
 BLE ble;
 KeyboardService *kbdServicePtr;
 
-static const char DEVICE_NAME[] = "µKbd";
+static const char DEVICE_NAME[] = "uKbd";
 static const char SHORT_DEVICE_NAME[] = "kbd1";
 
 static void onDisconnect(const Gap::DisconnectionCallbackParams_t *params)
