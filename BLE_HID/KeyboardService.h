@@ -24,7 +24,7 @@
 /* TODO: make this easier to configure by application (e.g. as a template parameter for
  * KeyboardService) */
 #ifndef KEYBUFFER_SIZE
-#define KEYBUFFER_SIZE 512
+#define KEYBUFFER_SIZE 256
 #endif
 
 /**
