@@ -297,18 +297,20 @@ public:
 
     /**
      * Pop a key from the internal FIFO, and attempt to send it over BLE
+     *
+     * keyUp reports should theoretically be sent after every keyDown, but we optimize the
+     * throughput by only sending one when strictly necessary:
+     * - when we need to repeat the same key
+     * - when there is no more key to report
+     *
+     * In case of error, put the key event back in the buffer, and retry on next tick.
      */
     virtual void sendCallback(void) {
         ble_error_t ret;
         uint8_t c;
+        static uint8_t previousKey = 0;
 
-        if (!keyBuffer.isSomethingPending()) {
-            /* Stop until the next call to putc */
-            stopReportTicker();
-            return;
-        }
-
-        if (!keyBuffer.isKeyUpPending()) {
+        if (keyBuffer.isSomethingPending() && !keyBuffer.isKeyUpPending()) {
             bool hasData = keyBuffer.getPending(c);
 
             /*
@@ -317,13 +319,26 @@ public:
              */
             MBED_ASSERT(hasData);
 
-            if (hasData) {
+            if (!hasData)
+                return;
+
+            if (previousKey == c) {
+                /*
+                 * When the same key needs to be sent twice, we need to interleave a keyUp report,
+                 * or else the OS won't be able to differentiate them.
+                 * Push the key back into the buffer, and continue to keyUpCode.
+                 */
+                keyBuffer.setPending(c);
+            } else {
                 ret = keyDownCode(c, keymap[c].modifier);
                 if (ret) {
                     keyBuffer.setPending(c);
                     failedReports++;
-                    return;
+                } else {
+                    previousKey = c;
                 }
+
+                return;
             }
         }
 
@@ -333,6 +348,11 @@ public:
             failedReports++;
         } else {
             keyBuffer.clearKeyUpPending();
+            previousKey = 0;
+
+            /* Idle when there is nothing more to send */
+            if (!keyBuffer.isSomethingPending())
+                stopReportTicker();
         }
     }
 
