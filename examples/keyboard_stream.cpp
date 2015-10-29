@@ -80,7 +80,7 @@ void send_string(const char * c) {
 }
 
 void send_stuff() {
-    send_string("hello world!");
+    send_string("hello world!\n");
 }
 
 void send_more_stuff() {
