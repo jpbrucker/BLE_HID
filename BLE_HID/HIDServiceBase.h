@@ -20,7 +20,7 @@
 #include "mbed.h"
 
 #include "ble/BLE.h"
-#include "HID_types.h"
+#include "USBHID_Types.h"
 
 #define BLE_UUID_DESCRIPTOR_REPORT_REFERENCE 0x2908
 
