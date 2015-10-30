@@ -15,8 +15,7 @@
  */
 
 #include "ble/services/BatteryService.h"
-
-#include "HIDDeviceInformationService.h"
+#include "ble/services/DeviceInformationService.h"
 
 #include "examples_common.h"
 
@@ -61,12 +60,7 @@ void initializeHOGP(BLE &ble)
         GattService::UUID_DEVICE_INFORMATION_SERVICE,
         GattService::UUID_BATTERY_SERVICE};
 
-    PnPID_t pnpID;
-    pnpID.vendorID_source = 0x2; // from the USB Implementer's Forum
-    pnpID.vendorID = 0x0D28; // NXP
-    pnpID.productID = 0x0204; // CMSIS-DAP (well, it's a keyboard but oh well)
-    pnpID.productVersion = 0x0100; // v1.0
-    HIDDeviceInformationService deviceInfo(ble, "ARM", "m1", "abc", "def", "ghi", "jkl", &pnpID);
+    DeviceInformationService deviceInfo(ble, "ARM", "m1", "abc", "def", "ghi", "jkl");
 
     BatteryService batteryInfo(ble, 80);
 
