@@ -108,9 +108,11 @@ int main()
     HID_DEBUG("setting up gap\r\n");
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MOUSE);
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME,
-                                           (uint8_t *)DEVICE_NAME, sizeof(DEVICE_NAME));
+                                           (const uint8_t *)DEVICE_NAME, sizeof(DEVICE_NAME));
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::SHORTENED_LOCAL_NAME,
-                                           (uint8_t *)SHORT_DEVICE_NAME, sizeof(SHORT_DEVICE_NAME));
+                                           (const uint8_t *)SHORT_DEVICE_NAME, sizeof(SHORT_DEVICE_NAME));
+
+    ble.gap().setDeviceName((const uint8_t *)DEVICE_NAME);
 
     HID_DEBUG("advertising\r\n");
     ble.gap().startAdvertising();
