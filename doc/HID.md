@@ -110,7 +110,7 @@ Here are the items of our keyboard:
     - *Input: Dynamic Flag (0x2)* - does the actual declaration.
     - **Reserved field:**
     - *Report count: 1*.
-    - *Report size: 1*.
+    - *Report size: 8*.
     - *Input: Static Value (0x1)*. This byte is reserved (constant).
     - **Key code array:**
     - *Report count: 6*.
